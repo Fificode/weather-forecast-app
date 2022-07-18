@@ -1,6 +1,8 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
+
 
 const Main = () => {
+
   return (
     <div className='weather__main'>
 <div className="weather__main-container">
