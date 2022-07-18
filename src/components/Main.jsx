@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 
 
-const Main = () => {
+const Main = ({weatherData}) => {
 
   return (
     <div className='weather__main'>
@@ -11,11 +11,11 @@ const Main = () => {
 <p>Sat, 3 Aug</p>
 </div>
 <div className="weather__main-temperature">
-<h2>30C</h2>
+<h2>{weatherData.current.temp_c}&deg;C</h2>
 <img src="" alt="" />
 </div>
 <div className="weather__main-location">
-    <p><span>{/* location icon */}</span>Alllentown, New Mexico 31134</p>
+    <p><span>{/* location icon */}</span>{weatherData.location.name}, {weatherData.location.country}</p>
 </div>
 </div>
     </div>
