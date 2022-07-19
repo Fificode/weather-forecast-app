@@ -21,7 +21,7 @@
     font-size: 45px;
 }
 .weather__main-date p{
-    padding: 30px 20px;
+    padding: 40px 20px;
     font-size: 30px;
 }
 
@@ -29,7 +29,20 @@
     font-size: 80px;
     padding: 80px 20px 40px 20px;
 }
+.weather__main-temperature h2 span{
+    color: rgb(235, 173, 16);
+}
+.weather__main-image{
+    width: 250px;
+    height: 250px;
+}
 .weather__main-location p{
     padding: 70px 20px 0 20px;
     font-size: 28px;
+}
+.weather__main-location-icon {
+    width: 20px;
+    height: 20px;
+    padding-right: 5px;
+    fill: rgb(235, 173, 16);
 }

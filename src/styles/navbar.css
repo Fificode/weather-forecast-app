@@ -3,3 +3,7 @@
     justify-content: space-between;
     padding: 20px;
 }
+.weather__navbar-searchicon, .weather__navbar-deleteicon, .weather__navbar-xicon {
+    width: 20px;
+    height: 20px;
+}
