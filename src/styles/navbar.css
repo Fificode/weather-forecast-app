@@ -3,7 +3,80 @@
     justify-content: space-between;
     padding: 20px;
 }
+.weather__navbar h1{
+    font-size: 30px;
+}
+.weather__navbar-search_container{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
 .weather__navbar-searchicon, .weather__navbar-deleteicon, .weather__navbar-xicon {
-    width: 20px;
-    height: 20px;
+    padding: 1.25rem;
+    height: 4rem;
+    cursor: pointer;
+    position: absolute;
+}
+.weather__navbar-searchicon{
+    fill: gray;
+    z-index: 99;
+    left: -0.2rem;
+}
+.weather__navbar-xicon{
+    right: 0;
+    fill: #ffffff;
+    transition: 500ms fill ease-in;
+}
+.weather__navbar-deleteicon{
+    right: 3rem;
+    fill: rgb(148, 146, 146);
+    display: none;
+}
+.weather__navbar-searchfield{
+    box-shadow: 0 0 10px 1px #ffffff;
+    border: none;
+    border-radius: 50%;
+    padding: 0.5rem 1.75rem;
+    font-family: inherit;
+    font-size: 1.5rem;
+    outline: none;
+    color: rgb(66, 64, 64);
+    height: 3rem;
+    width: 2rem;
+    transition: 500ms width ease-in-out,
+    500ms padding ease-in-out,
+    500ms border-radius ease-in-out
+    ;
+}
+.weather__navbar-searchfield:not(:placeholder-shown) ~ .weather__navbar-deleteicon{
+    display: block;
+}
+
+.weather__navbar-searchfield_open{
+    width: 34rem;
+    padding: 1.5rem 11rem 1.5rem 6rem;
+    border-radius: 25px;
+    
+}
+.weather__navbar-xicon_open{
+fill: rgb(148, 146, 146);
+}
+
+@media(max-width: 800px) {
+.weather__navbar-searchfield {
+       font-size: 1rem;
+    }
+        .weather__navbar-searchfield_open {
+            width: 20rem;
+            padding: 1.5rem 3rem 1.5rem 4rem;
+           
+    
+        }
+}
+@media(max-width: 500px){
+.weather__navbar h1 {
+        font-size: 25px;
+    }
 }

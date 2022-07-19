@@ -46,3 +46,37 @@
     padding-right: 5px;
     fill: rgb(235, 173, 16);
 }
+
+@media(max-width: 500px){
+    .weather__main-date{
+        display: flex;
+        flex-direction: column;
+    }
+    .weather__main-date h1{
+        font-size: 35px;
+    }
+    .weather__main-date p{
+        font-size: 25px;
+        padding: 20px;
+    }
+        .weather__main-image {
+            width: 150px;
+            height: 150px;
+            margin: 20px 0;
+        }
+                .weather__main-temperature h2 {
+                    font-size: 50px;
+                    
+                }
+                                .weather__main-location p {
+                                    padding: 30px 20px 20px 20px;
+                                    font-size: 25px;
+                                }
+}
+@media(max-width: 350px){
+.weather__main-image {
+        width: 100px;
+        height: 100px;
+        margin: 70px 0;
+    }
+}
