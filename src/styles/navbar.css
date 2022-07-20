@@ -1,7 +1,14 @@
 .weather__navbar{
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     padding: 20px;
+}
+.weather__navbar-open{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
 }
 .weather__navbar h1{
     font-size: 30px;
@@ -13,7 +20,11 @@
     justify-content: flex-start;
     align-items: center;
 }
-.weather__navbar-searchicon, .weather__navbar-deleteicon, .weather__navbar-xicon {
+.weather__navbar-search_container-mobile{
+    position: relative;
+        display: none;
+}
+.weather__navbar-searchicon, .weather__navbar-deleteicon {
     padding: 1.25rem;
     height: 4rem;
     cursor: pointer;
@@ -24,51 +35,37 @@
     z-index: 99;
     left: -0.2rem;
 }
-.weather__navbar-xicon{
-    right: 0;
-    fill: #ffffff;
-    transition: 500ms fill ease-in;
-}
+
 .weather__navbar-deleteicon{
-    right: 3rem;
+    right: 0;
     fill: rgb(148, 146, 146);
     display: none;
 }
 .weather__navbar-searchfield{
     box-shadow: 0 0 10px 1px #ffffff;
     border: none;
-    border-radius: 50%;
-    padding: 0.5rem 1.75rem;
     font-family: inherit;
     font-size: 1.5rem;
     outline: none;
     color: rgb(66, 64, 64);
     height: 3rem;
-    width: 2rem;
-    transition: 500ms width ease-in-out,
-    500ms padding ease-in-out,
-    500ms border-radius ease-in-out
-    ;
+    width: 34rem;
+    padding: 1.5rem 11rem 1.5rem 6rem;
+        border-radius: 25px;
+   
 }
+
 .weather__navbar-searchfield:not(:placeholder-shown) ~ .weather__navbar-deleteicon{
     display: block;
 }
 
-.weather__navbar-searchfield_open{
-    width: 34rem;
-    padding: 1.5rem 11rem 1.5rem 6rem;
-    border-radius: 25px;
-    
-}
-.weather__navbar-xicon_open{
-fill: rgb(148, 146, 146);
-}
+
 
 @media(max-width: 800px) {
 .weather__navbar-searchfield {
        font-size: 1rem;
     }
-        .weather__navbar-searchfield_open {
+        .weather__navbar-searchfield {
             width: 20rem;
             padding: 1.5rem 3rem 1.5rem 4rem;
            
@@ -76,7 +73,76 @@ fill: rgb(148, 146, 146);
         }
 }
 @media(max-width: 500px){
+    .weather__navbar-search_container{
+        display: none;
+    }
+        .weather__navbar-search_container-mobile{
+            position: relative;
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: center;
+        }
+    .weather__navbar-searchfield_mobile {
+            box-shadow: 0 0 10px 1px #ffffff;
+            border: none;
+            border-radius: 50%;
+            padding: 0.5rem 1.75rem;
+            font-family: inherit;
+            font-size: 1rem;
+            outline: none;
+            color: rgb(66, 64, 64);
+            height: 3rem;
+            width: 2rem;
+transition: 
+            200ms padding ease-in-out,
+               
+              ;
+                
+        }
+                .weather__navbar-searchfield_mobile:not(:placeholder-shown)~.weather__navbar-deleteicon_mobile {
+                    display: block;
+                }
+                .weather__navbar-searchfield_open {
+                    width: 100%;
+                    padding: 1.5rem 3rem 1.5rem 4rem;
+                    border-radius: 25px;
+                  
+        
+                }
+        
+               
+                .weather__navbar-searchicon_mobile,
+                                .weather__navbar-deleteicon_mobile,
+                                .weather__navbar-xicon_mobile {
+                                    padding: 1.25rem;
+                                    height: 4rem;
+                                    cursor: pointer;
+                                    position: absolute;
+                                }
+.weather__navbar-searchicon_mobile {
+                                                                    fill: gray;
+                                                                    z-index: 99;
+                                                                    left: -0.2rem;
+                                                                    
+                                                                }
+                                .weather__navbar-xicon_mobile {
+                                                                    right: 0;
+                                                                    fill: #ffffff;
+                                                                    /* transition: 500ms fill ease-in; */
+                                                                }
+                                
+ .weather__navbar-deleteicon_mobile {
+                                                                    right: 3rem;
+                                                                    fill: rgb(148, 146, 146);
+                                                                    display: none;
+                                                                } 
+                                                                .weather__navbar-xicon_open {
+                    fill: rgb(148, 146, 146);
+                }
+
 .weather__navbar h1 {
         font-size: 25px;
+        margin-bottom: 10px;
     }
 }
