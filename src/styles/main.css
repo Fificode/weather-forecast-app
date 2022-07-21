@@ -5,7 +5,8 @@
     display: flex;
     flex-direction: column;
    width: 100%;
-    height: 500px;
+    height: auto;
+    padding: 20px;
     border-radius: 25px;
     background-color: rgba(110, 110, 110, 0.25);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
@@ -47,6 +48,11 @@
     fill: rgb(235, 173, 16);
 }
 
+@media (max-width: 700px){
+ .weather__main-container{
+       padding: 10px;
+    }
+}
 @media(max-width: 500px){
     .weather__main-date{
         display: flex;
@@ -70,13 +76,22 @@
                 }
                                 .weather__main-location p {
                                     padding: 30px 20px 20px 20px;
-                                    font-size: 25px;
+                                    font-size: 24px;
                                 }
 }
 @media(max-width: 350px){
+   
 .weather__main-image {
         width: 100px;
         height: 100px;
         margin: 70px 0;
     }
+        .weather__main-date p {
+           
+            font-size: 22px;
+        }
+         .weather__main-location p {
+             
+             font-size: 20px;
+         }
 }

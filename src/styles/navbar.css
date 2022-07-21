@@ -2,7 +2,8 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 20px;
+    margin: 20px;
+   
 }
 .weather__navbar-open{
     display: flex;
@@ -129,7 +130,7 @@ transition:
                                 .weather__navbar-xicon_mobile {
                                                                     right: 0;
                                                                     fill: #ffffff;
-                                                                    /* transition: 500ms fill ease-in; */
+                                                                   
                                                                 }
                                 
  .weather__navbar-deleteicon_mobile {
@@ -145,4 +146,27 @@ transition:
         font-size: 25px;
         margin-bottom: 10px;
     }
+}
+@media (max-width: 380px){
+.weather__navbar-searchfield_mobile {
+       border-radius: 50%;
+        padding: 0.2rem 1.5rem;
+      height: 3rem;
+        width: 1.5rem;
+        transition:
+                200ms padding ease-in-out,
+         }
+                  .weather__navbar-searchfield_open {
+                      width: 100%;
+                      padding: 1.5rem 3rem 1.5rem 4rem;
+                      border-radius: 25px;
+        
+        
+                  }
+                                  .weather__navbar-searchicon_mobile {
+                                      fill: gray;
+                                      z-index: 99;
+                                      left: -0.4rem;
+                
+                                  }
 }

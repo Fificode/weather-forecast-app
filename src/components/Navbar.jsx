@@ -1,4 +1,5 @@
-import React from 'react'
+import axios from 'axios';
+import React, {useState, useEffect} from 'react'
 
 const Navbar = () => {
    let searchInput = document.querySelector(".weather__navbar-searchfield_mobile");
@@ -23,12 +24,39 @@ searchInput.classList.remove('weather__navbar-searchfield_open');
       searchInput.value = '';
       searchInput.focus();
     }
+
+    // Search location to get weather conditions
+    const [query, setQuery] = useState("");
+    const [error, setError] = useState("");
+    const [weather, setWeather] = useState({});
+
+    
+    const searchLocation = (city) => {
+      const url = `${process.env.REACT_APP_API_URL}/current.json?key=${process.env.REACT_APP_API_KEY}&q=${city != "[object Object]" ? city : query}&aqi=no`;
+
+      axios 
+      .get(url)
+      .then((response) => {
+        setWeather(response.data);
+        setQuery("");
+      })
+      .catch(function (error) {
+        console.log(error);
+        setWeather("");
+        setQuery("");
+        setError({message: "Not Found", query: query});
+      });
+    };
+
+useEffect(() => {
+  searchLocation("London");
+}, []);
   return (
     <div className='weather__navbar'>
         <h1>Weather Forecast</h1>
         <div className='weather__navbar-search_container'>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className='weather__navbar-searchicon'><path d="M500.3 443.7l-119.7-119.7c27.22-40.41 40.65-90.9 33.46-144.7C401.8 87.79 326.8 13.32 235.2 1.723C99.01-15.51-15.51 99.01 1.724 235.2c11.6 91.64 86.08 166.7 177.6 178.9c53.8 7.189 104.3-6.236 144.7-33.46l119.7 119.7c15.62 15.62 40.95 15.62 56.57 0C515.9 484.7 515.9 459.3 500.3 443.7zM79.1 208c0-70.58 57.42-128 128-128s128 57.42 128 128c0 70.58-57.42 128-128 128S79.1 278.6 79.1 208z" /></svg>
-          <input type="text" autoFocus placeholder='Search for location' className='weather__navbar-searchfield'/>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className='weather__navbar-searchicon' onClick={searchLocation}><path d="M500.3 443.7l-119.7-119.7c27.22-40.41 40.65-90.9 33.46-144.7C401.8 87.79 326.8 13.32 235.2 1.723C99.01-15.51-15.51 99.01 1.724 235.2c11.6 91.64 86.08 166.7 177.6 178.9c53.8 7.189 104.3-6.236 144.7-33.46l119.7 119.7c15.62 15.62 40.95 15.62 56.57 0C515.9 484.7 515.9 459.3 500.3 443.7zM79.1 208c0-70.58 57.42-128 128-128s128 57.42 128 128c0 70.58-57.42 128-128 128S79.1 278.6 79.1 208z" /></svg>
+          <input type="text" autoFocus placeholder='Search for location' className='weather__navbar-searchfield' value={query} onChange={(e) => setQuery(e.target.value) }/>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" className='weather__navbar-deleteicon'onClick={deleteSearch}><path d="M576 384C576 419.3 547.3 448 512 448H205.3C188.3 448 172 441.3 160 429.3L9.372 278.6C3.371 272.6 0 264.5 0 256C0 247.5 3.372 239.4 9.372 233.4L160 82.75C172 70.74 188.3 64 205.3 64H512C547.3 64 576 92.65 576 128V384zM271 208.1L318.1 256L271 303C261.7 312.4 261.7 327.6 271 336.1C280.4 346.3 295.6 346.3 304.1 336.1L352 289.9L399 336.1C408.4 346.3 423.6 346.3 432.1 336.1C442.3 327.6 442.3 312.4 432.1 303L385.9 256L432.1 208.1C442.3 199.6 442.3 184.4 432.1 175C423.6 165.7 408.4 165.7 399 175L352 222.1L304.1 175C295.6 165.7 280.4 165.7 271 175C261.7 184.4 261.7 199.6 271 208.1V208.1z"/></svg>
           </div>
         <div className='weather__navbar-search_container-mobile'>

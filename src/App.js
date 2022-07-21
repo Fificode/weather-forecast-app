@@ -3,7 +3,7 @@ import Main from './components/Main';
 import Navbar from './components/Navbar';
 import './styles/navbar.css';
 import './styles/main.css';
-
+import './styles/loading.css';
 
 
 
@@ -23,8 +23,7 @@ function App() {
         .then(res => res.json())
         .then(result => {
           setData(result)
-          console.log(result);
-        });
+         });
     }
     fetchData();
   }, [lat, long]);

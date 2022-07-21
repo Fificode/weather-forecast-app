@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import moment from 'moment';
 
 const Main = ({weatherData}) => {
@@ -10,7 +10,10 @@ temperature = `${temp.toFixed(0)}`;
     <div className='weather__main'>
 <div className="weather__main-container">
     <div className="weather__main-date">
-<h1>Today</h1>
+<div><h1>Today</h1>
+<p>
+            {moment().format("h:mm a")}
+          </p></div>
 <p>{moment().format('dddd')} {moment().format('LL')}</p>
 </div>
 <div className="weather__main-temperature">
