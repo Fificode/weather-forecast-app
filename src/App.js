@@ -12,6 +12,7 @@ function App() {
   const [lat, setLat] = useState([]);
   const [long, setLong] = useState([]);
    const [data, setData] = useState([]);
+   
 
   //Weather conditions based on latitude and longitude
   useEffect(() => {
@@ -27,7 +28,8 @@ function App() {
         .then(res => res.json())
         .then(result => {console.log(url);
           setData(result)
-         });
+         })
+       
     }
     fetchData();
   }, [lat, long]);
@@ -36,7 +38,8 @@ function App() {
  
   return (
     <div>
-      <Navbar />
+     
+             <Navbar setData={setData} />
       {(typeof data.location != 'undefined') ? (<Main weatherData={data} />) : (<Loading />)}
     </div>
   );

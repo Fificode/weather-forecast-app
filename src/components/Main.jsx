@@ -2,11 +2,8 @@ import React, {useState} from 'react'
 import moment from 'moment';
 
 const Main = ({weatherData}) => {
-let temp = weatherData.current.temp_c;
-let temperature;
-temperature = `${temp.toFixed(0)}`;
 
-  return (
+return (
     <div className='weather__main'>
 <div className="weather__main-container">
     <div className="weather__main-date">
@@ -17,7 +14,7 @@ temperature = `${temp.toFixed(0)}`;
 <p>{moment().format('dddd')} {moment().format('LL')}</p>
 </div>
 <div className="weather__main-temperature">
-<h2>{temperature}<span>&deg;C</span></h2>
+<h2>{weatherData.current.temp_c.toFixed(0)}<span>&deg;C</span></h2>
 <img src={weatherData.current.condition.icon} alt="Weather condition icon" className='weather__main-image'/>
 </div>
 <div className="weather__main-location">
