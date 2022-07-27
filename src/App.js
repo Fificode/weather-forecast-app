@@ -15,6 +15,7 @@ function App() {
   const [long, setLong] = useState([]);
    const [data, setData] = useState([]);
    const [hoursData, setHoursData] = useState([]);
+   const [tomorrowHoursData, setTomorrowHoursData] = useState([]);
 
      navigator.geolocation.getCurrentPosition(function (position) {
         setLat(position.coords.latitude);
@@ -47,12 +48,29 @@ function App() {
       await fetch(url)
       
         .then(res => res.json())
-        .then(result => {console.log(url);
+        .then(result => {
           setHoursData(result.forecast.forecastday[0].hour)
          })
        
     }
     fetchHourlyData();
+  }, [lat, long]);
+
+
+  //Weather conditions based on latitude and longitude for the next day hourly 
+  useEffect(() => {
+    const fetchTomorrowHourlyData = async () => {
+    
+      const url = `${process.env.REACT_APP_API_URL}/forecast.json?key=${process.env.REACT_APP_API_KEY}&q=${lat}&q=${long}&q=hour&q=tomorrow&days=1&aqi=no&alerts=no`;
+      await fetch(url)
+      
+        .then(res => res.json())
+        .then(result => {console.log(result);
+          setTomorrowHoursData(result.forecast.forecastday[0].hour)
+         })
+       
+    }
+    fetchTomorrowHourlyData();
   }, [lat, long]);
 
  
@@ -61,13 +79,19 @@ function App() {
     <div>
      
              <Navbar setData={setData} />
-      {(typeof data.location != 'undefined') ? (<Main weatherData={data} />) : (<Loading />)}
+      {(typeof data.location != 'undefined') ? (<Main weatherData={data} />) : <Loading /> }
       <h2 className='weather__heading'>
-        <a href='#today'>Today</a>
-        <a href='#tomorrow'>Tomorrow</a>
-        <a href='#nextsevendays'>Next 7 Days</a>
+        <a href='#today'>Today's Hourly Weather conditions</a>
       </h2>
      <div className="weather__hourly-flex_container" id='today'>
+        { (typeof data.location != 'undefined') && hoursData.filter(hourData =>  data.location.localtime < hourData.time ).map((hourData) => (<Hourlychart hourData={hourData} key={hourData.time_epoch} />)) }
+    </div>
+    <h2 className='weather__heading'> <a href='#tomorrow'>Tomorrow's Hourly Weather conditions</a></h2>
+     <div className="weather__hourly-flex_container" id='tomorrow'>
+        { (typeof data.location != 'undefined') && tomorrowHoursData.map((hourData) => (<Hourlychart hourData={tomorrowHoursData} key={hourData.time_epoch} />)) }
+    </div>
+     <h2 className='weather__heading'> <a href='#nextsevendays'>Next Seven Days Hourly Weather conditions</a></h2>
+     <div className="weather__hourly-flex_container" id='nextsevendays'>
         { (typeof data.location != 'undefined') && hoursData.map((hourData) => (<Hourlychart hourData={hourData} key={hourData.time_epoch} />)) }
     </div>
     </div>
