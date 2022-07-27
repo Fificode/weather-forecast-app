@@ -43,12 +43,12 @@ function App() {
   useEffect(() => {
     const fetchHourlyData = async () => {
     
-      const url = `${process.env.REACT_APP_API_URL}/current.json?key=${process.env.REACT_APP_API_KEY}&q=${lat}&q=${long}&q=days&days=7&aqi=no&alerts=no`;
+      const url = `${process.env.REACT_APP_API_URL}/forecast.json?key=${process.env.REACT_APP_API_KEY}&q=${lat}&q=${long}&q=hour&aqi=no&alerts=no`;
       await fetch(url)
       
         .then(res => res.json())
         .then(result => {console.log(url);
-          setHoursData(result)
+          setHoursData(result.forecast.forecastday[0].hour)
          })
        
     }
@@ -62,9 +62,14 @@ function App() {
      
              <Navbar setData={setData} />
       {(typeof data.location != 'undefined') ? (<Main weatherData={data} />) : (<Loading />)}
-      
-        { hoursData.map((hourData) => (<Hourlychart hourData={hourData} key={hoursData.localtime_epoch} />)) }
-     
+      <h2 className='weather__heading'>
+        <a href='#today'>Today</a>
+        <a href='#tomorrow'>Tomorrow</a>
+        <a href='#nextsevendays'>Next 7 Days</a>
+      </h2>
+     <div className="weather__hourly-flex_container" id='today'>
+        { (typeof data.location != 'undefined') && hoursData.map((hourData) => (<Hourlychart hourData={hourData} key={hourData.time_epoch} />)) }
+    </div>
     </div>
   );
 }
