@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useCallback} from 'react'
 
 
 const Navbar = (props) => {
@@ -31,19 +31,19 @@ const [query, setQuery] = useState("");
 const [error, setError] = useState("");
 
 
-const searchLocation = (city) => {
+const searchLocation = useCallback( (city) => {
  
       const url = `${process.env.REACT_APP_API_URL}/current.json?key=${process.env.REACT_APP_API_KEY}&q=${city !== "[object Object]" ? city : query}&aqi=no`;
 
       axios 
       .get(url)
       .then((response) => {
-        props.setData(response.data);
+        props.setData({dailyData : response.data});
      
       })
       .catch(function(error) {
         console.log(error);
-        props.setData("");
+        //props.setData("");
         setError({message: "Not Found", query: query});
       });
       if(error) {
@@ -51,11 +51,11 @@ const searchLocation = (city) => {
           <h1>Error...</h1>
         )
       }
-    };
+    }, [error, props, query]);
 
 useEffect(() => {
-  searchLocation(query);
-}, [query]);
+ if(query) {searchLocation(query);}
+}, [searchLocation, query]);
 
 
 

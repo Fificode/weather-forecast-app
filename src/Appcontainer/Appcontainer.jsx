@@ -18,7 +18,7 @@ if(currentWeather){
     const dailyData = currentWeather.dailyData;
     return(
         <div>
-            {!position ? <Loading/> : <Navbar position={position} setCurrentLocation={locationContext.setCurrentLocation}/>}
+            {!position ? <Loading/> : <Navbar setData={context.setCurrentWeather} position={position} setCurrentLocation={locationContext.setCurrentLocation}/>}
             <Main dailyData={dailyData}/>
         </div>
     )

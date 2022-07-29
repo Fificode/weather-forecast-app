@@ -8,7 +8,7 @@ const CurrentWeatherContextProvider = (props) => {
 
     const locationContext = useContext(LocationContext);
     const [currentWeather, setCurrentWeather] = useState(null);
-    // const [selectedDayWeather, setSelectedDayWeather] = useState(null);
+    const [hourWeather, setHourWeather] = useState(null);
 
   
   useEffect(() => {
@@ -22,8 +22,31 @@ const CurrentWeatherContextProvider = (props) => {
       
         
         .then(result => {
+         
+          setCurrentWeather({dailyData: result.data})
+         })
+          .catch(function (error) {
+                    console.log(error);
+                })
+        }
+       
+    
+  }, [locationContext.location]);
+
+
+  useEffect(() => {
+   
+    const location = locationContext.location;
+    if(location){
+    let { lat, lon } = location.position;
+
+      const url = `${process.env.REACT_APP_API_URL}/current.json?key=${process.env.REACT_APP_API_KEY}&q=${lat}&q=${lon}&q=hour&aqi=no&alerts=no`;
+      axios.get(url)
+      
+        
+        .then(result => {
           console.log(url);
-          setCurrentWeather({dailyData: result})
+          setHourWeather({hourlyData: result.data})
          })
           .catch(function (error) {
                     console.log(error);
@@ -36,7 +59,7 @@ const CurrentWeatherContextProvider = (props) => {
 
 
   return (
-    <CurrentWeatherContext.Provider value={{currentWeather, setCurrentWeather}}>
+    <CurrentWeatherContext.Provider value={{currentWeather, setCurrentWeather, hourWeather, setHourWeather}}>
 {props.children}
     </CurrentWeatherContext.Provider>
   )
