@@ -26,7 +26,6 @@ if(currentWeather){
            <div className='weather__hourly-flex_container'> 
            {hourlyData.map((hourData) =>(<Hourlychart hourData={hourData} key={hourData.time_epoch}/>))}
            </div>
-           {/* {  hoursData.filter(hourData =>  data.location.localtime < hourData.time ).map((hourData) => (<Hourlychart hourData={hourData}  />)) } */}
         </div>
     )
 }

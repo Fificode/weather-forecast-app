@@ -45,8 +45,9 @@ const CurrentWeatherContextProvider = (props) => {
       
         
         .then(result => {
-          console.log(url);
-          setHourWeather({hourlyData: result.forecast.forecastday[0].hour})
+          // console.log(result);
+          setHourWeather({hourlyData: result.data.forecast.forecastday[0].hour});
+          console.log(result.data.forecast.forecastday[0]);
          })
           .catch(function (error) {
                     console.log(error);
