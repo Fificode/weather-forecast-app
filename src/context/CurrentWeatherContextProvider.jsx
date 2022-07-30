@@ -8,7 +8,7 @@ const CurrentWeatherContextProvider = (props) => {
 
     const locationContext = useContext(LocationContext);
     const [currentWeather, setCurrentWeather] = useState(null);
-    const [hourWeather, setHourWeather] = useState(null);
+    const [hourWeather, setHourWeather] = useState([]);
 
   
   useEffect(() => {
@@ -40,13 +40,13 @@ const CurrentWeatherContextProvider = (props) => {
     if(location){
     let { lat, lon } = location.position;
 
-      const url = `${process.env.REACT_APP_API_URL}/current.json?key=${process.env.REACT_APP_API_KEY}&q=${lat}&q=${lon}&q=hour&aqi=no&alerts=no`;
+      const url = `${process.env.REACT_APP_API_URL}/forecast.json?key=${process.env.REACT_APP_API_KEY}&q=${lat}&q=${lon}&q=hour&aqi=no&alerts=no`;
       axios.get(url)
       
         
         .then(result => {
           console.log(url);
-          setHourWeather({hourlyData: result.data})
+          setHourWeather({hourlyData: result.forecast.forecastday[0].hour})
          })
           .catch(function (error) {
                     console.log(error);

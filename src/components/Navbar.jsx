@@ -38,7 +38,8 @@ const searchLocation = useCallback( (city) => {
       axios 
       .get(url)
       .then((response) => {
-        props.setData({dailyData : response.data});
+        props.setDailyData({dailyData : response.data});
+        // props.setHourlyData({hourlyData : response.data});
      
       })
       .catch(function(error) {
