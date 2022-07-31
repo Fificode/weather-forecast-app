@@ -16,15 +16,18 @@ const Appcontainer = () => {
             (context) => {
 const currentWeather = context.currentWeather;
 const hourWeather = context.hourWeather;
-if(currentWeather){
+if(currentWeather && hourWeather){
     const dailyData = currentWeather.dailyData;
     const hourlyData = hourWeather.hourlyData;
     return(
         <div>
             {!position ? <Loading/> : <Navbar setDailyData={context.setCurrentWeather} setHourlyData={context.setHourWeather} position={position} setCurrentLocation={locationContext.setCurrentLocation}/>}
-            <Main dailyData={dailyData}/>
+            <Main dailyData={dailyData} hourData={hourlyData}/>
+             <h2 className='weather__heading'>
+        <a href='#today'>Today's Hourly Weather conditions</a>
+      </h2>
            <div className='weather__hourly-flex_container'> 
-           {hourlyData.map((hourData) =>(<Hourlychart hourData={hourData} key={hourData.time_epoch}/>))}
+           {hourlyData.map((hourData) =>(<Hourlychart id='today' hourData={hourData} key={hourData.time_epoch}/>))}
            </div>
         </div>
     )

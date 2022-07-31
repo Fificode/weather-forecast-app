@@ -14,7 +14,8 @@ body {
 .weather__hourly-flex_container{
   display: flex;
   flex-direction: row;
-  /* flex-wrap: wrap; */
+  justify-content: center;
+  flex-wrap: wrap;
 }
 .weather__heading{
   margin: 20px 5px;

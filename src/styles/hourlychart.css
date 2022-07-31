@@ -1,11 +1,13 @@
 .weather__hourly {
     padding: 20px;
+   
+  
 }
 
 .weather__hourly-container {
     display: flex;
     flex-direction: column;
-    width: 300px;
+    width:290px;
     height: auto;
     padding: 10px;
     border-radius: 25px;

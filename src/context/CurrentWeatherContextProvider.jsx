@@ -8,7 +8,7 @@ const CurrentWeatherContextProvider = (props) => {
 
     const locationContext = useContext(LocationContext);
     const [currentWeather, setCurrentWeather] = useState(null);
-    const [hourWeather, setHourWeather] = useState([]);
+    const [hourWeather, setHourWeather] = useState(null);
 
   
   useEffect(() => {
@@ -22,7 +22,7 @@ const CurrentWeatherContextProvider = (props) => {
       
         
         .then(result => {
-         
+        //  console.log(result.data)
           setCurrentWeather({dailyData: result.data})
          })
           .catch(function (error) {
@@ -45,9 +45,10 @@ const CurrentWeatherContextProvider = (props) => {
       
         
         .then(result => {
-          // console.log(result);
+         
+         console.log(result.data.forecast.forecastday[0].hour);
           setHourWeather({hourlyData: result.data.forecast.forecastday[0].hour});
-          console.log(result.data.forecast.forecastday[0]);
+          
          })
           .catch(function (error) {
                     console.log(error);
