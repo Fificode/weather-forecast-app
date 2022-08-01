@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect, useContext} from 'react'
+import React, { createContext, useState, useEffect, useContext, useCallback} from 'react'
 import { LocationContext } from './LocationContextProvider';
 import axios from 'axios';
 
@@ -9,8 +9,11 @@ const CurrentWeatherContextProvider = (props) => {
     const locationContext = useContext(LocationContext);
     const [currentWeather, setCurrentWeather] = useState(null);
     const [hourWeather, setHourWeather] = useState(null);
+     const [tomorrowWeather, setTomorrowWeather] = useState('');
+    
+    // const [nextDaysWeather, setNextDaysWeather] = useState(null);
 
-  
+  //Fetch current weather location
   useEffect(() => {
    
     const location = locationContext.location;
@@ -33,35 +36,104 @@ const CurrentWeatherContextProvider = (props) => {
     
   }, [locationContext.location]);
 
-
+//Fetch today's weather location hourly
   useEffect(() => {
-   
-    const location = locationContext.location;
+   const location = locationContext.location;
     if(location){
     let { lat, lon } = location.position;
 
       const url = `${process.env.REACT_APP_API_URL}/forecast.json?key=${process.env.REACT_APP_API_KEY}&q=${lat}&q=${lon}&q=hour&aqi=no&alerts=no`;
       axios.get(url)
-      
-        
-        .then(result => {
-         
-         console.log(result.data.forecast.forecastday[0].hour);
+      .then(result => {
+         //  console.log(result.data.forecast.forecastday[0].hour);
           setHourWeather({hourlyData: result.data.forecast.forecastday[0].hour});
-          
-         })
+          })
           .catch(function (error) {
                     console.log(error);
                 })
         }
        
-    
+    }, [locationContext.location]);
+
+ //Fetch Tomorrow's weather location hourly
+  const handleTomorrowWeather = useCallback(() => {
+
+    const location = locationContext.location;
+
+    if (location) {
+      let { lat, lon } = location.position;
+
+      const url = `${process.env.REACT_APP_API_URL}/forecast.json?key=${process.env.REACT_APP_API_KEY}&q=${lat}&q=${lon}&q=hour&q=tomorrow&days=1&aqi=no&alerts=no`;
+      axios.get(url)
+        .then(result => {
+          //  console.log(result.data);
+          setTomorrowWeather({tomorrowsData: result.data.forecast.forecastday[0].hour});
+          // setTomorrowWeather(result.data.forecast.forecastday[0].hour);
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+    }
+
+
+
   }, [locationContext.location]);
 
+  useEffect(() => {
+    handleTomorrowWeather();
+  }, [locationContext.location, handleTomorrowWeather]);
 
+  
+    //  let slideIndex = 1;
+    // showSlides(slideIndex);
+
+    // // Next/previous controls
+    // function plusSlides(n) {
+    //   showSlides(slideIndex += n);
+    // }
+
+
+    // function showSlides(n) {
+    //   let i;
+    //   let slides = document.getElementById("todayweather");
+
+    //   if (n > slides.length) {slideIndex = 1}
+    //   if (n < 1) {slideIndex = slides.length}
+    //   for (i = 0; i < slides.length; i++) {
+    //     slides[i].style.display = "none";
+    //   }
+
+    //   slides[slideIndex-1].style.display = "block";
+
+    // }
+
+  //Fetch next days hourly weather conditions
+// useEffect(() => {
+   
+//     const location = locationContext.location;
+//     if(location){
+//     let { lat, lon } = location.position;
+
+//       const url = `${process.env.REACT_APP_API_URL}/forecast.json?key=${process.env.REACT_APP_API_KEY}&q=${lat}&q=${lon}&days=7&aqi=no&alerts=no`;
+//       axios.get(url)
+      
+        
+//         .then(result => {
+         
+//          console.log(result.data);
+//           setNextDaysWeather({nextDaysData: result.data.forecast.forecastday[0].hour[0]});
+          
+//          })
+//           .catch(function (error) {
+//                     console.log(error);
+//                 })
+//         }
+       
+    
+//   }, [locationContext.location]);
 
   return (
-    <CurrentWeatherContext.Provider value={{currentWeather, setCurrentWeather, hourWeather, setHourWeather}}>
+    <CurrentWeatherContext.Provider value={{currentWeather, setCurrentWeather, hourWeather, setHourWeather, tomorrowWeather, setTomorrowWeather, handleTomorrowWeather}}>
 {props.children}
     </CurrentWeatherContext.Provider>
   )

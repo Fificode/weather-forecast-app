@@ -39,12 +39,11 @@ const searchLocation = useCallback( (city) => {
       .get(url)
       .then((response) => {
         props.setDailyData({dailyData : response.data});
-        // props.setHourlyData({hourlyData : response.data});
+       
      
       })
       .catch(function(error) {
         console.log(error);
-        //props.setData("");
         setError({message: "Not Found", query: query});
       });
       if(error) {

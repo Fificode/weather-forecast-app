@@ -5,7 +5,9 @@ import LocationContextProvider from './context/LocationContextProvider';
 import './styles/navbar.css';
 import './styles/main.css';
 import './styles/loading.css';
-import './styles/hourlychart.css'
+import './styles/hourlychart.css';
+import './styles/tomorrowchart.css';
+import './styles/nextdays.css';
 
 
 

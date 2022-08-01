@@ -1,13 +1,11 @@
-.weather__hourly {
+.weather__nextDay {
     padding: 20px;
-  
-  
 }
 
-.weather__hourly-container {
+.weather__nextDay-container {
     display: flex;
     flex-direction: column;
-    width:290px;
+    width: 290px;
     height: auto;
     padding: 10px;
     border-radius: 25px;
@@ -16,37 +14,31 @@
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
 }
-.weather__hourly-image_container{
+
+.weather__nextDay-image_container {
     display: flex;
     justify-content: flex-end;
 }
 
 
-.weather__hourly-date p {
-   padding: 5px;
+.weather__nextDay-date p {
+    padding: 5px;
     font-size: 30px;
 }
 
-.weather__hourly-temperature h2 {
+.weather__nextDay-temperature h2 {
     font-size: 50px;
     padding: 5px;
 }
 
-.weather__hourly-temperature h2 span {
+.weather__nextDay-temperature h2 span {
     color: rgb(235, 173, 16);
 }
 
-.weather__hourly-image {
+.weather__nextDay-image {
     width: 150px;
     height: 150px;
 }
 
 
-@media (max-width: 500px) {
-/* .weather__hourly {
-       
-        display: none;
-
-    } */
-}
-
+@media (max-width: 700px) {}
