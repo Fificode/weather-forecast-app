@@ -18,9 +18,9 @@ const CurrentWeatherContextProvider = (props) => {
    
     const location = locationContext.location;
     if(location){
-    let { lat, lon } = location.position;
+    let { latitude, longitude } = location.position;
 
-      const url = `${process.env.REACT_APP_API_URL}/current.json?key=${process.env.REACT_APP_API_KEY}&q=${lat}&q=${lon}&aqi=no&alerts=no`;
+      const url = `${process.env.REACT_APP_API_URL}/current.json?key=${process.env.REACT_APP_API_KEY}&q=${latitude}&q=${longitude}&aqi=no&alerts=no`;
       axios.get(url)
       
         
@@ -40,9 +40,9 @@ const CurrentWeatherContextProvider = (props) => {
   useEffect(() => {
    const location = locationContext.location;
     if(location){
-    let { lat, lon } = location.position;
+    let { latitude, longitude } = location.position;
 
-      const url = `${process.env.REACT_APP_API_URL}/forecast.json?key=${process.env.REACT_APP_API_KEY}&q=${lat}&q=${lon}&q=hour&aqi=no&alerts=no`;
+      const url = `${process.env.REACT_APP_API_URL}/forecast.json?key=${process.env.REACT_APP_API_KEY}&q=${latitude}&q=${longitude}&q=hour&aqi=no&alerts=no`;
       axios.get(url)
       .then(result => {
          //  console.log(result.data.forecast.forecastday[0].hour);
@@ -61,9 +61,9 @@ const CurrentWeatherContextProvider = (props) => {
     const location = locationContext.location;
 
     if (location) {
-      let { lat, lon } = location.position;
+      let { latitude, longitude } = location.position;
 
-      const url = `${process.env.REACT_APP_API_URL}/forecast.json?key=${process.env.REACT_APP_API_KEY}&q=${lat}&q=${lon}&q=hour&q=tomorrow&days=1&aqi=no&alerts=no`;
+      const url = `${process.env.REACT_APP_API_URL}/forecast.json?key=${process.env.REACT_APP_API_KEY}&q=${latitude}&q=${longitude}&q=hour&q=tomorrow&days=1&aqi=no&alerts=no`;
       axios.get(url)
         .then(result => {
           //  console.log(result.data);
@@ -112,9 +112,9 @@ const CurrentWeatherContextProvider = (props) => {
    
 //     const location = locationContext.location;
 //     if(location){
-//     let { lat, lon } = location.position;
+//     let { latitude, longitude } = location.position;
 
-//       const url = `${process.env.REACT_APP_API_URL}/forecast.json?key=${process.env.REACT_APP_API_KEY}&q=${lat}&q=${lon}&days=7&aqi=no&alerts=no`;
+//       const url = `${process.env.REACT_APP_API_URL}/forecast.json?key=${process.env.REACT_APP_API_KEY}&q=${latitude}&q=${longitude}&days=7&aqi=no&alerts=no`;
 //       axios.get(url)
       
         
