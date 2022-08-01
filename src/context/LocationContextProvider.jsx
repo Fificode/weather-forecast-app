@@ -13,7 +13,7 @@ const LocationContextProvider = (props) => {
 
 
 useEffect(() => {
-    const url = 'http://ip-api.com/json';
+    const url = 'https://ip-api.com/json';
     axios.get(url)
       .then(function (res) {
 
