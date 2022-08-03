@@ -22,9 +22,15 @@
 }
 
 
-.weather__tomorrow-date p {
+.weather__tomorrow-date, .weather__tomorrow-time {
     padding: 5px;
-    font-size: 30px;
+    
+}
+.weather__tomorrow-time{
+font-size: 30px;
+}
+.weather__tomorrow-date{
+    font-size: 20px;
 }
 
 .weather__tomorrow-temperature h2 {

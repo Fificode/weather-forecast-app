@@ -12,7 +12,8 @@ const CurrentWeatherContextProvider = (props) => {
      const [tomorrowWeather, setTomorrowWeather] = useState('');
     
     // const [nextDaysWeather, setNextDaysWeather] = useState(null);
-
+// const [isDisplayed, setIsDisplayed] = useState(false);
+ 
   //Fetch current weather location
   useEffect(() => {
    
@@ -37,7 +38,9 @@ const CurrentWeatherContextProvider = (props) => {
   }, [locationContext.location]);
 
 //Fetch today's weather location hourly
-  useEffect(() => {
+ useEffect(() => {
+
+
    const location = locationContext.location;
     if(location){
     let { latitude, longitude } = location.position;
@@ -45,7 +48,7 @@ const CurrentWeatherContextProvider = (props) => {
       const url = `${process.env.REACT_APP_API_URL}/forecast.json?key=${process.env.REACT_APP_API_KEY}&q=${latitude}&q=${longitude}&q=hour&aqi=no&alerts=no`;
       axios.get(url)
       .then(result => {
-         //  console.log(result.data.forecast.forecastday[0].hour);
+          // console.log(result.data.forecast.forecastday[0].hour);
           setHourWeather({hourlyData: result.data.forecast.forecastday[0].hour});
           })
           .catch(function (error) {
@@ -53,7 +56,14 @@ const CurrentWeatherContextProvider = (props) => {
                 })
         }
        
+
+        
+        // setIsDisplayed(prevState => !prevState);
     }, [locationContext.location]);
+
+  //    useEffect(() => {
+  //   handleTodayWeather();
+  // }, [locationContext.location, handleTodayWeather]);
 
  //Fetch Tomorrow's weather location hourly
   const handleTomorrowWeather = useCallback(() => {
@@ -66,16 +76,16 @@ const CurrentWeatherContextProvider = (props) => {
       const url = `${process.env.REACT_APP_API_URL}/forecast.json?key=${process.env.REACT_APP_API_KEY}&q=${latitude}&q=${longitude}&q=hour&q=tomorrow&days=1&aqi=no&alerts=no`;
       axios.get(url)
         .then(result => {
-          //  console.log(result.data);
+           console.log(result.data);
           setTomorrowWeather({tomorrowsData: result.data.forecast.forecastday[0].hour});
-          // setTomorrowWeather(result.data.forecast.forecastday[0].hour);
+          
         })
         .catch(function (error) {
           console.log(error);
         })
     }
 
-
+// setIsDisplayed(prevState => !prevState);
 
   }, [locationContext.location]);
 
@@ -84,28 +94,6 @@ const CurrentWeatherContextProvider = (props) => {
   }, [locationContext.location, handleTomorrowWeather]);
 
   
-    //  let slideIndex = 1;
-    // showSlides(slideIndex);
-
-    // // Next/previous controls
-    // function plusSlides(n) {
-    //   showSlides(slideIndex += n);
-    // }
-
-
-    // function showSlides(n) {
-    //   let i;
-    //   let slides = document.getElementById("todayweather");
-
-    //   if (n > slides.length) {slideIndex = 1}
-    //   if (n < 1) {slideIndex = slides.length}
-    //   for (i = 0; i < slides.length; i++) {
-    //     slides[i].style.display = "none";
-    //   }
-
-    //   slides[slideIndex-1].style.display = "block";
-
-    // }
 
   //Fetch next days hourly weather conditions
 // useEffect(() => {

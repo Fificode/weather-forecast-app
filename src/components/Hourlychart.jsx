@@ -1,9 +1,10 @@
 import React from 'react'
 import moment from 'moment';
-
+//  className = 'todayweather'
 const Hourlychart = ({hourData}) => {
   return (
-     <div className='weather__hourly'>
+    // className={`weather__hourly ${className}`}
+     <div className='weather__hourly' >
 <div className="weather__hourly-container">
     <div className="weather__hourly-image_container"><img src={hourData.condition.icon} alt="Weather condition icon" className='weather__hourly-image'/></div>
     <div className="weather__hourly-date">
