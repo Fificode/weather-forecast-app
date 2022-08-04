@@ -10,9 +10,7 @@ const CurrentWeatherContextProvider = (props) => {
     const [currentWeather, setCurrentWeather] = useState(null);
     const [hourWeather, setHourWeather] = useState(null);
      const [tomorrowWeather, setTomorrowWeather] = useState('');
-    
-    // const [nextDaysWeather, setNextDaysWeather] = useState(null);
-// const [isDisplayed, setIsDisplayed] = useState(false);
+
  
   //Fetch current weather location
   useEffect(() => {
@@ -34,14 +32,12 @@ const CurrentWeatherContextProvider = (props) => {
                 })
         }
        
-    
-  }, [locationContext.location]);
+ }, [locationContext.location]);
 
 //Fetch today's weather location hourly
  useEffect(() => {
 
-
-   const location = locationContext.location;
+  const location = locationContext.location;
     if(location){
     let { latitude, longitude } = location.position;
 
@@ -55,15 +51,10 @@ const CurrentWeatherContextProvider = (props) => {
                     console.log(error);
                 })
         }
-       
-
-        
-        // setIsDisplayed(prevState => !prevState);
+      
     }, [locationContext.location]);
 
-  //    useEffect(() => {
-  //   handleTodayWeather();
-  // }, [locationContext.location, handleTodayWeather]);
+
 
  //Fetch Tomorrow's weather location hourly
   const handleTomorrowWeather = useCallback(() => {
@@ -76,7 +67,7 @@ const CurrentWeatherContextProvider = (props) => {
       const url = `${process.env.REACT_APP_API_URL}/forecast.json?key=${process.env.REACT_APP_API_KEY}&q=${latitude}&q=${longitude}&q=hour&q=tomorrow&days=1&aqi=no&alerts=no`;
       axios.get(url)
         .then(result => {
-           console.log(result.data);
+          //  console.log(result.data);
           setTomorrowWeather({tomorrowsData: result.data.forecast.forecastday[0].hour});
           
         })
@@ -85,40 +76,13 @@ const CurrentWeatherContextProvider = (props) => {
         })
     }
 
-// setIsDisplayed(prevState => !prevState);
-
-  }, [locationContext.location]);
+}, [locationContext.location]);
 
   useEffect(() => {
     handleTomorrowWeather();
   }, [locationContext.location, handleTomorrowWeather]);
 
-  
 
-  //Fetch next days hourly weather conditions
-// useEffect(() => {
-   
-//     const location = locationContext.location;
-//     if(location){
-//     let { latitude, longitude } = location.position;
-
-//       const url = `${process.env.REACT_APP_API_URL}/forecast.json?key=${process.env.REACT_APP_API_KEY}&q=${latitude}&q=${longitude}&days=7&aqi=no&alerts=no`;
-//       axios.get(url)
-      
-        
-//         .then(result => {
-         
-//          console.log(result.data);
-//           setNextDaysWeather({nextDaysData: result.data.forecast.forecastday[0].hour[0]});
-          
-//          })
-//           .catch(function (error) {
-//                     console.log(error);
-//                 })
-//         }
-       
-    
-//   }, [locationContext.location]);
 
   return (
     <CurrentWeatherContext.Provider value={{currentWeather, setCurrentWeather, hourWeather, setHourWeather, tomorrowWeather, setTomorrowWeather, handleTomorrowWeather}}>
