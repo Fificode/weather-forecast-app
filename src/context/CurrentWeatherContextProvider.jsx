@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect, useContext, useCallback} from 'react'
+import React, { createContext, useState, useEffect, useContext} from 'react'
 import { LocationContext } from './LocationContextProvider';
 import axios from 'axios';
 
@@ -57,7 +57,7 @@ const CurrentWeatherContextProvider = (props) => {
 
 
  //Fetch Tomorrow's weather location hourly
-  const handleTomorrowWeather = useCallback(() => {
+  useEffect(() => {
 
     const location = locationContext.location;
 
@@ -78,14 +78,11 @@ const CurrentWeatherContextProvider = (props) => {
 
 }, [locationContext.location]);
 
-  useEffect(() => {
-    handleTomorrowWeather();
-  }, [locationContext.location, handleTomorrowWeather]);
-
+ 
 
 
   return (
-    <CurrentWeatherContext.Provider value={{currentWeather, setCurrentWeather, hourWeather, setHourWeather, tomorrowWeather, setTomorrowWeather, handleTomorrowWeather}}>
+    <CurrentWeatherContext.Provider value={{currentWeather, setCurrentWeather, hourWeather, setHourWeather, tomorrowWeather, setTomorrowWeather}}>
 {props.children}
     </CurrentWeatherContext.Provider>
   )
