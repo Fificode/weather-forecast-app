@@ -28,8 +28,12 @@ align-items: center;
  
 }
 .weather__tomorrow-flex_container{
-
-  display: none;
+display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+ 
 }
 .weather__heading{
   margin: 20px 5px;

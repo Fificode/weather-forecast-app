@@ -15,27 +15,14 @@ const Appcontainer = () => {
 
   //Display today and tomorrow weather
   const [isDisplayed, setIsDisplayed] = useState(true);
-   let todayweather = document.querySelector(".weather__today-flex_container");
-   let tomorrowweather = document.querySelector(".weather__tomorrow-flex_container");
-  const handleTodayWeather = () => {
-    if(isDisplayed){
-   todayweather.style.display = 'flex';
-   tomorrowweather.style.display = 'none';
-    }
+  
+  const handleWeather = () => {
 setIsDisplayed(prevState => !prevState);
-  }
-  const handleTomorrowWeather = () => {
-    if(isDisplayed){
-   todayweather.style.display = 'none';
-   tomorrowweather.style.cssText = `display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  `;
     }
-setIsDisplayed(prevState => !prevState);
-  }
+
+  
+  
+  
 
   return (
     <CurrentWeatherContext.Consumer>
@@ -57,17 +44,17 @@ setIsDisplayed(prevState => !prevState);
                 {!position ? <Loading /> : <Navbar setDailyData={context.setCurrentWeather} setHourlyData={context.setHourWeather} position={position} setCurrentLocation={locationContext.setCurrentLocation} />}
                 <Main dailyData={dailyData} hourData={hourlyData} />
                 <h2 className='weather__heading'>
-                  <a href='#today' onClick={handleTodayWeather}>Today</a>
-                  <a href='#tomorrow' onClick={handleTomorrowWeather}>Tomorrow</a>
+                  <a href='#today' onClick={handleWeather}>Today</a>
+                  <a href='#tomorrow' onClick={handleWeather}>Tomorrow</a>
                  
                 </h2>
                 <div className='weather__flex-container'>
-                <div className='weather__today-flex_container' id='today'>
+              { isDisplayed ? (<div className='weather__today-flex_container' id='today'>
                     {hourlyData.filter(hourData => hourData.time > dailyData.location.localtime).map((hourData) => (<Hourlychart hourData={hourData} key={hourData.time_epoch} isDisplayed={true} />))}
-                 </div>
-                  <div className="weather__tomorrow-flex_container" id="tomorrow" >
+                 </div>) :
+                  (<div className="weather__tomorrow-flex_container" id="tomorrow" >
                     {tomorrowsData.map((tomorrowData) => (<Tomorrowchart tomorrowData={tomorrowData} key={tomorrowData.time_epoch} isDisplayed={false} />))}
-                  </div>
+                   </div> )}
                 </div>
               </div>
             )

@@ -1,5 +1,6 @@
 .weather__main {
    padding: 20px;
+  margin: auto;
 }
 .weather__main-container{ 
     display: flex;
