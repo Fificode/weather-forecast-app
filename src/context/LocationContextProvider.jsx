@@ -1,20 +1,16 @@
 import React, {createContext, useState, useEffect} from 'react'
 import axios from 'axios';
 
-
 export const LocationContext = createContext();
 
 const LocationContextProvider = (props) => {
-   
-   const [location, setLocation] = useState("");
+    const [location, setLocation] = useState("");
      const setCurrentLocation = (location) => {
     setLocation({ position: location })
   };
-
 const API_KEY = '9430594a2b8b49b5ad85bc870e5309a6';
 useEffect(() => {
-   
-    const url = `https://api.ipgeolocation.io/ipgeo?apiKey=${API_KEY}`;
+   const url = `https://api.ipgeolocation.io/ipgeo?apiKey=${API_KEY}`;
     axios.get(url)
       .then(function (res) {
 
@@ -26,14 +22,11 @@ useEffect(() => {
         console.log(error);
       })
   }, []);
-
-  
-  return (
+return (
     <LocationContext.Provider
       value={{ location, setCurrentLocation}}>
       {props.children}
     </LocationContext.Provider>
   )
 }
-
 export default LocationContextProvider
