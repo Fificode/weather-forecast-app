@@ -64,11 +64,11 @@ const CurrentWeatherContextProvider = (props) => {
     if (location) {
       let { latitude, longitude } = location.position;
 
-      const url = `${process.env.REACT_APP_API_URL}/forecast.json?key=${process.env.REACT_APP_API_KEY}&q=${latitude}&q=${longitude}&q=hour&q=tomorrow&days=1&aqi=no&alerts=no`;
+      const url = `${process.env.REACT_APP_API_URL}/forecast.json?key=${process.env.REACT_APP_API_KEY}&q=${latitude}&q=${longitude}&q=hour&days=2&aqi=no&alerts=no`;
       axios.get(url)
         .then(result => {
-          //  console.log(result.data);
-          setTomorrowWeather({tomorrowsData: result.data.forecast.forecastday[0].hour});
+           console.log(result.data);
+          setTomorrowWeather({tomorrowsData: result.data.forecast.forecastday[1].hour});
           
         })
         .catch(function (error) {
