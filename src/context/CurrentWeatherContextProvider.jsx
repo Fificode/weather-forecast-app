@@ -67,7 +67,7 @@ const CurrentWeatherContextProvider = (props) => {
       const url = `${process.env.REACT_APP_API_URL}/forecast.json?key=${process.env.REACT_APP_API_KEY}&q=${latitude}&q=${longitude}&q=hour&days=2&aqi=no&alerts=no`;
       axios.get(url)
         .then(result => {
-           console.log(result.data);
+          //  console.log(result.data);
           setTomorrowWeather({tomorrowsData: result.data.forecast.forecastday[1].hour});
           
         })

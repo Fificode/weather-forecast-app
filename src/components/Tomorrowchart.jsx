@@ -12,7 +12,7 @@ const Tomorrowchart = ({tomorrowData}) => {
 <p className='weather__tomorrow-time'>
             {moment(tomorrowData.time).format("h:mm a")}
           </p>
-          <p className='weather__tomorrow-date'>{moment(tomorrowData.time).format('dddd')} {moment().format('LL')}</p>
+          <p className='weather__tomorrow-date'>{moment(tomorrowData.time).format('dddd')} {moment(tomorrowData.time).format('LL')}</p>
 
 </div>
 <div className="weather__tomorrow-temperature">
