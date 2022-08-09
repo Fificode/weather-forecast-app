@@ -1,3 +1,5 @@
+# A weather app for getting weather conditions based on current location and you can also search for location
+
 # Live link: https://reactweatherforecastt.netlify.app/
 
 # Getting Started with Create React App
