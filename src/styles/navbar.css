@@ -5,12 +5,7 @@
     margin: 20px;
    
 }
-.weather__navbar-open{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
-}
+
 .weather__navbar h1{
     font-size: 30px;
 }
@@ -52,9 +47,6 @@
    
 }
 
-.weather__navbar-searchfield:not(:placeholder-shown) ~ .weather__navbar-deleteicon{
-    display: block;
-}
 
 
 
@@ -97,67 +89,63 @@ transition:
               ;
                 
         }
-                .weather__navbar-searchfield_mobile:not(:placeholder-shown)~.weather__navbar-deleteicon_mobile {
-                    display: block;
-                }
-                .weather__navbar-searchfield_open {
-                    width: 100%;
-                    padding: 1.5rem 3rem 1.5rem 4rem;
-                    border-radius: 25px;
-                  
-        
-                }
+ .weather__navbar-open {
+     display: flex;
+     flex-direction: column;
+    align-items: center;
+         }
+                
+.weather__navbar-searchfield_open {
+width: 100%;
+padding: 1.5rem 3rem 1.5rem 4rem;
+border-radius: 25px;
+                  }
         
                
-                .weather__navbar-searchicon_mobile,
-                                .weather__navbar-xicon_mobile {
-                                    padding: 1.25rem;
-                                    height: 4rem;
-                                    cursor: pointer;
-                                    position: absolute;
+.weather__navbar-searchicon_mobile,
+.weather__navbar-xicon_mobile {  
+     padding: 1.25rem;
+     height: 4rem;
+     cursor: pointer;
+    position: absolute;
                                 }
 .weather__navbar-searchicon_mobile {
-                                                                    fill: gray;
-                                                                    z-index: 99;
-                                                                    left: -0.2rem;
-                                                                    
-                                                                }
-                                .weather__navbar-xicon_mobile {
-                                                                    right: 0;
-                                                                    fill: #ffffff;
-                                                                   
-                                                                }
+ fill: gray;
+z-index: 99;
+left: -0.2rem;
+}
+ .weather__navbar-xicon_mobile {
+     right: 0;
+fill: #ffffff;
+ }
                                 
- 
-                                                                .weather__navbar-xicon_open {
-                    fill: rgb(148, 146, 146);
+ .weather__navbar-xicon_open {
+    fill: rgb(148, 146, 146);
                 }
 
 .weather__navbar h1 {
-        font-size: 25px;
-        margin-bottom: 10px;
+ font-size: 25px;
+margin-bottom: 10px;
     }
 }
+
 @media (max-width: 380px){
 .weather__navbar-searchfield_mobile {
        border-radius: 50%;
         padding: 0.2rem 1.5rem;
       height: 3rem;
-        width: 1.5rem;
-        transition:
-                200ms padding ease-in-out,
+    width: 1.5rem;
+    transition: 200ms padding ease-in-out,
          }
-                  .weather__navbar-searchfield_open {
-                      width: 100%;
-                      padding: 1.5rem 3rem 1.5rem 4rem;
-                      border-radius: 25px;
+.weather__navbar-searchfield_open {
+    width: 100%;
+ padding: 1.5rem 3rem 1.5rem 4rem;
+border-radius: 25px;
         
-        
-                  }
-                                  .weather__navbar-searchicon_mobile {
-                                      fill: gray;
-                                      z-index: 99;
-                                      left: -0.4rem;
-                
-                                  }
+        }
+ .weather__navbar-searchicon_mobile {
+    fill: gray;
+ z-index: 99;
+ left: -0.4rem;
+ }
 }
