@@ -99,6 +99,14 @@ transition:
 width: 100%;
 padding: 1.5rem 3rem 1.5rem 4rem;
 border-radius: 25px;
+box-shadow: 0 0 10px 1px #ffffff;
+    border: none;
+    font-family: inherit;
+    font-size: 1rem;
+    outline: none;
+    color: rgb(66, 64, 64);
+    height: 3rem;
+    transition: 200ms padding ease-in-out;
                   }
         
                

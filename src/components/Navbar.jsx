@@ -4,17 +4,22 @@ import React, {useState, useEffect, useCallback} from 'react'
 
 const Navbar = (props) => {
 
-   let mobileSearchInput = document.querySelector(".weather__navbar-searchfield_mobile");
- 
+   
+
 
   function handleSearch () {
+let mobileSearchInput = document.querySelector(".weather__navbar-searchfield_mobile");
+    
    document.querySelector(".weather__navbar").classList.add('weather__navbar-open');
+ 
     mobileSearchInput.classList.add('weather__navbar-searchfield_open');
      document.querySelector(".weather__navbar-xicon_mobile").classList.add('weather__navbar-xicon_open');
 mobileSearchInput.focus();
 }
 
     function closeSearch (){
+      let mobileSearchInput = document.querySelector(".weather__navbar-searchfield_mobile");
+     
 mobileSearchInput.classList.remove('weather__navbar-searchfield_open');
 document.querySelector(".weather__navbar-xicon_mobile").classList.remove('weather__navbar-xicon_open');
  document.querySelector(".weather__navbar").classList.remove('weather__navbar-open');
